@@ -22,12 +22,18 @@
           <% end %>
         </td>
         <td>
-          <%= item.price %>
+          <%= item.price.to_s(:delimited) %>
         </td>
         <td>
-          <%= item.genre_id %>
+          <%= item.genre.name %>
         </td>
-        <td></td>
+        <td>
+          <% if item.is_active == true %>
+            <p>販売中</p>
+          <% else %>
+            <p>販売停止中</p>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
