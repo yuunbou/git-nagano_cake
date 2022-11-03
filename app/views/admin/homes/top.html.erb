@@ -10,13 +10,17 @@
     </tr>
   </thead>
   <tbody>
-    <% %>
+    <% @orders.each do |order| %>
       <tr>
         <td>
+          <%= order.created_at.strftime('%Y%m/%d %X')%>
         </td>
         <td>
+          <%= order.customer.last_name %>
+          <%= order.customer.first_name %>
         </td>
         <td>
+          <%= order.order_details.amount %>
         </td>
         <td>
         </td>
