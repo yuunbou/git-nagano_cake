@@ -3,14 +3,28 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+
+  scope module: :public do
+    root to: 'homes#top'
+    get "/about" => "homes#about", as: "about"
+    get "/customers/my_page" => "customers#show"
+    get "/customers/information/edit" => "customers#edit"
+    patch "/customers/confirm" => "customers#update"
+    get "/customers/confirm" => "customers#confirm"
+    patch "/customers/withdraw" => "customers#withdraw"
+  end
+
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
   namespace :admin do
-    root to: "homes#top"
+    get "/" => "homes#top"
     resources :genres, only:[:index, :create, :edit, :update]
     resources :items, only:[:index, :new, :create, :show, :edit, :update]
     resources :customers, only:[:index, :show, :edit, :update]
+    get 'orders/:id' => 'orders#show'
+    patch 'orders/:id' => 'orders#update'
+    patch 'order_details/:id' => 'order_details#update'
   end
 
 end
