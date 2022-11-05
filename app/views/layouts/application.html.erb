@@ -6,12 +6,70 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <span class="navbar-brand">Nagano_Cake</span>
+          <button class="navbar-toggler" type="button" date-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <li>
+                  <%= link_to "商品一覧", admin_items_path, class:'btn btn-light' %>
+                </li>
+                <li>
+                  <%= link_to "会員一覧", admin_customers_path, class:'nav_link text-dark' %>
+                </li>
+                <li>
+                  <%= link_to "注文一覧", admin_root_path, class:'nav_link text-dark' %>
+                </li>
+                <li>
+                  <%= link_to "ジャンル一覧", admin_genres_path, class:'nav_link text-dark' %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'nav_link text-dark' %>
+                </li>
+                <% elsif customer_signed_in? %>
+                <li>
+                  <%= link_to "マイページ", customers_information_edit_path, class: 'btn btn-light' %>
+                </li>
+                <li>
+                  <span>商品一覧</span>
+                </li>
+                <li>
+                  <span>カート</span>
+                </li>
+                <li>
+                  <span>ログアウト</span>
+                </li>
+                <% else %>
+                <li>
+                  <%= link_to "About", about_path, class:'btn btn-light' %>
+                </li>
+                <li>
+                  <span>商品一覧</span>
+                </li>
+                <li>
+                  <%= link_to "新規登録", new_customer_registration_path, class:'btn btn-light' %>
+                </li>
+                <li>
+                  <%= link_to "ログイン", new_customer_session_path, class:'btn btn-light'%>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>
