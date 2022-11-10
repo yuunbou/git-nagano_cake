@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     patch "/customers/confirm" => "customers#update"
     get "/customers/confirm" => "customers#confirm"
     patch "/customers/withdraw" => "customers#withdraw"
+    resources :items, only:[:index, :show]
+    delete "/cart_items/destroy_all" => "cart_items#destroy_all"
+    resources :cart_items, only:[:index, :update, :destroy, :create]
+
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
