@@ -7,40 +7,37 @@
           <div class="field">
             <label>名前</label>
             <%= f.label :last_name, "(姓)" %>
-            <%= f.text_field :last_name %>
+            <%= f.text_field :last_name, required: true %>
             <%= f.label :first_name, "(名)" %>
-            <%= f.text_field :first_name %>
+            <%= f.text_field :first_name, required: true %>
           </div>
 
           <div class="field">
             <label>フリガナ</label>
             <%= f.label :last_name_kana, "(セイ)" %>
-
-            <%= f.text_field :last_name_kana %>
-
+            <%= f.text_field :last_name_kana, required: true %>
             <%= f.label :first_name_kana, "(メイ)" %>
-
-            <%= f.text_field :first_name_kana %>
+            <%= f.text_field :first_name_kana, required: true %>
           </div>
 
           <div class="field">
-            <%= f.label :email %>
+            <%= f.label :email, "メールアドレス" %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
           </div>
 
           <div class="field">
             <%= f.label :postal_code, "郵便番号" %>
-            <%= f.text_field :postal_code %>
+            <%= f.text_field :postal_code, required: true %>
           </div>
 
           <div class="field">
             <%= f.label :address %>
-            <%= f.text_field :address %>
+            <%= f.text_field :address, required: true %>
           </div>
 
           <div class="field">
             <%= f.label :telephone_number, "電話番号(ハイフンなし)" %>
-            <%= f.text_field :telephone_number %>
+            <%= f.text_field :telephone_number, required: true %>
           </div>
 
         <div class="field">
