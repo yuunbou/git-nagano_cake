@@ -1,46 +1,54 @@
-<h2><%= @customer.last_name %>
-<%= @customer.first_name %>さんの会員情報編集
-</h2>
+<div class="container">
+  <h3><%= (@customer.last_name + @customer.first_name) %>さんの会員情報編集</h3>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
 
-<%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
-  <div class="field">
-    <label>会員ID</label>
-    <%= @customer.id %>
-  </div>
-  <div class="field">
-    <label>氏名</label>
-    <%= f.text_field :last_name %>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <label>フリガナ</label>
-    <%= f.text_field :last_name_kana %>
-    <%= f.text_field :first_name_kana %>
-  </div>
-  <div class="field">
-    <label>郵便番号</label>
-    <%= f.text_field :postal_code %>
-  </div>
-  <div class="field">
-    <label>住所</label>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <label>電話番号</label>
-    <%= f.text_field :telephone_number %>
-  </div>
-  <div class="field">
-    <label>メールアドレス</label>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <label>会員ステータス</label>
-    <%= f.radio_button :is_deleted, :true %>
-    <%= f.label :is_deleted, "有効", {value: :true, style: "display: inline-block"} %>
-    <%= f.radio_button :is_deleted, :false %>
-    <%= f.label :is_deleted, "退会", {value: :false, style: "display: inline-block"} %>
-  </div>
+        <div class="col-xs-10">
+          <div class="form-group col-xs-9">
+            <%= f.label :"会員ID", class: "col-sm-2 control-label" %>
+            <%= @customer.id %>
+          </div>
 
-  <%= f.submit '変更を保存' %>
-<% end %>
+          <div class="form-group col-xs-9">
+            <%= f.label :"氏名", class: "col-sm-2 control-label" %>
+            <%= f.text_field :last_name, class: "col-sm-3 mr-2" %>
+            <%= f.text_field :first_name, class: "col-sm-3" %>
+          </div>
+          <div class="form-group col-xs-9">
+            <%= f.label :"フリガナ", class: "col-sm-2 control-label" %>
+            <%= f.text_field :last_name_kana, class: "col-sm-3 mr-2" %>
+            <%= f.text_field :first_name_kana, class: "col-sm-3" %>
+          </div>
+          <div class="form-group col-xs-9">
+            <%= f.label :"郵便番号", class: "col-sm-2 control-label" %>
+            <%= f.text_field :postal_code, class: "col-sm-3" %>
+          </div>
+          <div class="form-group col-xs-9">
+            <%= f.label :"住所", class: "col-sm-2 control-label" %>
+            <%= f.text_field :address, class: "col-sm-8" %>
+          </div>
+          <div class="form-group col-xs-9">
+            <%= f.label :"電話番号", class: "col-sm-2 control-label" %>
+            <%= f.text_field :telephone_number, class: "col-sm-3" %>
+          </div>
+          <div class="form-group col-xs-9">
+            <%= f.label :"メールアドレス", class: "col-sm-2 control-label" %>
+            <%= f.text_field :email, class: "col-sm-3" %>
+          </div>
+          <div class="form-group col-xs-9">
+            <%= f.label :"会員ステータス", class: "col-sm-2 control-label" %>
+            <%= f.radio_button :is_deleted, :false %>
+            <%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block"} %>
+            <%= f.radio_button :is_deleted, :true %>
+            <%= f.label :is_deleted, "退会", {value: :true, style: "display: inline-block"} %>
+           </div>
 
+            <div class="col-xs-12">
+              <%= f.submit '変更を保存', class: "btn btn-success btn-lg" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>
