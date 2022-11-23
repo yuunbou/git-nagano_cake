@@ -8,9 +8,7 @@ class Order < ApplicationRecord
   validates :postal_code, presence: true
   validates :address, presence: true
   validates :name, presence: true
+
   
-  def total_price
-    item.with_tax_price * amount
-  end
 
 end

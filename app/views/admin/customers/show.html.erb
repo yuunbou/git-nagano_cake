@@ -34,7 +34,7 @@
 </div>
 <div class="field">
   <label>会員ステータス</label>
-<% if @customer.is_deleted == true %>
+<% if @customer.is_deleted == false %>
   <p>有効</p>
 <% else %>
   <p>退会</p>

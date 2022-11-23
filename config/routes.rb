@@ -9,15 +9,16 @@ Rails.application.routes.draw do
     get "/about" => "homes#about", as: "about"
     get "/customers/my_page" => "customers#show"
     get "/customers/information/edit" => "customers#edit"
-    patch "/customers/confirm" => "customers#update"
+    patch "/customers/information" => "customers#update"
     get "/customers/confirm" => "customers#confirm"
     patch "/customers/withdraw" => "customers#withdraw", as: "withdraw"
     resources :items, only:[:index, :show]
     delete "/cart_items/destroy_all" => "cart_items#destroy_all"
     resources :cart_items, only:[:index, :update, :destroy, :create]
-    resources :orders, only:[:new, :index, :show, :create]
+    get "/orders/new" => "orders#new"
     post "/orders/confirm" => "orders#confirm"
     get "/orders/complete" => "orders#complete", as: "complete"
+    resources :orders, only:[:index, :show, :create]
     resources :addresses, only:[:index, :create, :edit, :update, :destroy]
   end
 

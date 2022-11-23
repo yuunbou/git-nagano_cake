@@ -1,8 +1,10 @@
 class OrderDetail < ApplicationRecord
   belongs_to :item
-  belongs_to :otder
+  belongs_to :order
 
-  eunm making_status: { impossible: 0, wait: 1, production: 2, complete: 3}
-
-
+  enum making_status: { impossible: 0, wait: 1, production: 2, complete: 3}
+  
+  def total_price
+    item.with_tax_price * amount
+  end
 end

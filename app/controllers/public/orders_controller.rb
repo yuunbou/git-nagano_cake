@@ -16,7 +16,7 @@ class Public::OrdersController < ApplicationController
     if params[:order][:select_address] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
-      @order.name = customer_customer.first_name + current_customer.last_name
+      @order.name = current_customer.first_name + current_customer.last_name
       render 'confirm'
 
     elsif params[:order][:select_address] == "1"
@@ -49,19 +49,19 @@ class Public::OrdersController < ApplicationController
       @order_detail.amount = cart_item.amount
       @order_detail.price = (cart_item.item.price*1.1).floor
       @order_detail.order_id = @order.id
-      @order_detail.save
+      @order_detail.save!
     end
       current_customer.cart_items.destroy_all
       redirect_to complete_path
   end
 
   def index
-    @order = current_customer.orders
+    @orders = current_customer.orders
   end
 
   def show
-    #@order = Order.find(params[:id])
-    #@order_details = @order.order_details
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   private
