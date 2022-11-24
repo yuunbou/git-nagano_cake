@@ -1,12 +1,19 @@
-<h2>商品一覧</h2>
-<p>（全<%= @items.count %>件）</p>
-
-<% @items.each do |item| %>
-  <div class="field">
-    <%= link_to item_path(item.id) do %>
-      <%= image_tag item.get_image(200,200) %>
-    <% end %><br>
-    <%= item.name %><br>
-    ¥<%= item.price %>
+<div class="container">
+  <div class="row m-5">
+    <div class="col-12 d-flex">
+      <h2 class="font-weight-bold">商品一覧</h2>
+      <p class="align-text-bottom font-weight-bold mt-3 mb-0">（全<%= @items.count %>件）</p>
+    </div>
+    <div class="col-12 d-flex">
+      <% @items.each do |item| %>
+        <div class="list-group-item m-3">
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.get_image(200,200) %>
+          <% end %><br>
+          <%= item.name %><br>
+          ¥<%= item.price %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
