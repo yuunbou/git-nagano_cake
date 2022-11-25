@@ -1,18 +1,34 @@
-<h2>注文履歴一覧</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>購入日時</th>
-      <th>購入者</th>
-      <th>注文個数</th>
-      <th>注文ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |orders| %>
-      <tr>
-        <td><%= link_to admin_order_path</td>
-      </tr>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row m-3">
+    <h3 class="col-lg-2 offset-1 bg-light text-center">注文履歴一覧</h2>
+  </div>
+  <div class="row mx-auto">
+    <table class="table justify-content-cente">
+      <thead>
+        <tr class="bg-light">
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+        </tr>
+      </thead>
+      <% @orders.each do |order| %>
+      <tbody>
+          <tr>
+            <td>
+              <%= link_to admin_order_path(order.id) do %>
+                <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+              <% end %>
+            </td>
+            <td><%= order.name %></td>
+            <!--　購入者エラー　-->
+            <td><%= order. %></td>
+            <!-- 注文個数エラー -->
+            <td><%= order.status %></td>
+            <!--　注文ステータスエラー　-->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
