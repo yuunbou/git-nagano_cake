@@ -1,14 +1,14 @@
 <div class="container">
-    <div class="row md-3">
-        <div class="col-8 ottset-1">
-            <h4 class="pt-3">注文情報確認</h4>
+    <div class="row mt-3">
+        <div class="col-lg-2 ottset-1">
+            <h4 class="bg-light text-center">注文情報確認</h4>
         </div>
     </div>
     <div class="row">
-        <div class="col-7">
+        <div class="col-lg-7">
             <table class="table table-bordered">
                 <thead>
-                    <tr>
+                    <tr class="bg-light">
                         <th>商品名</th>
                         <th>単価（税込）</th>
                         <th>数量</th>
@@ -38,18 +38,18 @@
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <th scope="col">送料</th>
+                        <th class="bg-light">送料</th>
                         <td>
                             <%= @order.shipping_cost.to_s(:delimited) %>
                             <%= f.hidden_field :shipping_cost, :value => @order.shipping_cost %>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="col">商品合計</th>
+                        <th class="bg-light">商品合計</th>
                         <td><%= @sum.to_s(:delimited) %></td>
                     </tr>
                     <tr>
-                        <th scope="col">請求金額</th>
+                        <th class="bg-light">請求金額</th>
                         <td>
                             <%= @order.total_payment = @sum + @order.shipping_cost %>
                             <% @order.total_payment %>
@@ -62,16 +62,15 @@
     </div>
 
     <div class="row">
-        <div class="col-11">
-            <tabel class="tabel tabel-borderless">
+            <table class="tabel tabel-borderless">
                 <tr>
-                    <th class="col-1">支払方法</th>
-                </tf>
-                    <td class="col-10"><%= @order.payment_method_i18n %></td>
+                    <th class="h4 col-lg-1">支払方法</th>
+                    <td class="col-lg-3"><%= @order.payment_method_i18n %></td>
                     <%= f.hidden_field :payment_method, :value => @order.payment_method %></br>
+                </tr>
                 <tr>
-                    <th class="col-1">お届け先</th>
-                    <td class="col-10">
+                    <th class="h4 col-lg-1">お届け先</th>
+                    <td class="col-lg-6">
                         〒<%= @order.postal_code %>
                         <%= f.hidden_field :postal_code, :value => @order.postal_code %>
                         <%= @order.address %>
@@ -80,8 +79,8 @@
                         <%= f.hidden_field :name, :value => @order.name %>
                     </td>
                 </tr>
-            </tabel>
-        </div>
+            </table>
+
     </div>
     <div class="text-center">
         <%= f.submit "注文を確定する", class: "btn btn-success" %>
