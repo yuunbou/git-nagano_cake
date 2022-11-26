@@ -9,16 +9,12 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.update(order_params)
     @order_details = @order.order_details
-
-    if @order.status == "0"
-      @order_details.each do |order_detail|
-        order_detail.making_status = "0"
-        order_detail.save
-      end
+    if @order.update(order_params)
+      redirect_to admin_order_path(@order.id)
+    else
+      render admin_order_path(@order.id)
     end
-    redirect_to admin_order_path
   end
 
   private

@@ -20,16 +20,13 @@
                 <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
               <% end %>
             </td>
-            <td><%= order.name %></td>
-            <!--　購入者エラー　-->
-            <td><%= order. %></td>
-            <!-- 注文個数エラー -->
-            <td><%= order.status %></td>
-            <!--　注文ステータスエラー　-->
+            <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
+            <td><%= order.order_details.sum(:amount) %></td>
+            <td><%= order.status_i18n %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <%= paginate orders 
+    <%= paginate @orders %>
   </div>
 </div>
