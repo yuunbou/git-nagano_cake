@@ -30,22 +30,3 @@
 </div>
 
 
-    </div>
-  </div>
-    <div class="col-lg-4 list-group-item m-5">
-      <h3 class="font-weight-bold"><%= image_tag @item.get_image(300,400) %></h3>
-      <p class="mb-4"><%= @item.introduction %></p>
-      <p class="h4 my-5">¥<%= @item.with_tax_price.to_s(:delimited) %></p>
-      <p>(税込)</p>
-
-      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
-        <%= f.hidden_field :item_id, :value => @item.id %>
-        <div class="form-group d-flex flex-row">
-          <%= f.select :amount, *[1..10], include_blank: "個数選択" %>
-          <%= f.submit 'カートに入れる' , class: 'col-lg-4 offset-3 btn btn-success' %>
-        </div>
-      <% end %>
-    </div>
-    </div>
-  </div>
-</div>
