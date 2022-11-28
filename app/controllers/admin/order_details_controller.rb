@@ -4,11 +4,24 @@ class Admin::OrderDetailsController < ApplicationController
 
   def update
     @order_detail = OrderDetail.find(params[:id])
-    if @order_detail.update(order_detail_params)
-      redirect_to admin_order_path(@order_detail.order.id)
-    else
-      render admin_order_path(@order_detail.order.id)
+    @order = @order_detail.order
+    @order_details = @order.order_details
+    @order_detail.update(order_detail_params)
+    if @order_detail.making_status_i18n == "製作中"
+      @order.status = 2
+      @order.save
     end
+    @sum = 0
+    @order_details.each do |order_detail|
+      if order_detail.making_status_i18n == "製作完了"
+        @sum += 1
+      end
+    end
+    if @sum == @order_details.count.to_i
+      @order.status = 3
+      @order.save
+    end
+    redirect_to admin_order_path(@order_detail.order.id)
   end
 
   private

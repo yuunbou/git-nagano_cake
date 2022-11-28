@@ -1,12 +1,42 @@
 <div class="container mx-auto">
   <div class="row m-5">
-    <div class="col-lg-3 offset-2">
-        <%= image_tag @item.get_image(300,400) %>
+    <div class="col-lg-4">
+      <%= image_tag @item.get_image(300,400) %>
     </div>
+    <div class="col-lg-6">
+      <table>
+        <tbody>
+          <tr>
+            <td class="h3 font-weight-bold"><%= @item.name %></td>
+          </tr>
+          <tr>
+            <td><%= @item.introduction %></td>
+          </tr>
+          <tr>
+            <td class="h5 font-weight-bold">¥<%= @item.with_tax_price.to_s(:delimited) %></td>
+            <td>(税込)</td>
+          </tr>
+          <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+          <tr>
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <td><%= f.select :amount, *[1..10], include_blank: "個数選択" %></td>
+            <td><%= f.submit 'カートに入れる' , class: 'btn btn-success' %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+    </div>
+  </div>
     <div class="col-lg-4 list-group-item m-5">
-      <h3 class="font-weight-bold"><%= @item.name %></h3>
+      <h3 class="font-weight-bold"><%= image_tag @item.get_image(300,400) %></h3>
       <p class="mb-4"><%= @item.introduction %></p>
-      <p class="h4 my-5"><%= @item.with_tax_price.to_s(:delimited) %>（税込）</p>
+      <p class="h4 my-5">¥<%= @item.with_tax_price.to_s(:delimited) %></p>
+      <p>(税込)</p>
 
       <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
         <%= f.hidden_field :item_id, :value => @item.id %>

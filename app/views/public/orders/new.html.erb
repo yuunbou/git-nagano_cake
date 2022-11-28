@@ -42,15 +42,15 @@
           </tr>
           <tr>
             <td class="col-lg-3"><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></td>
-            <td><%= f.text_field :postal_code %></td>
+            <td><%= f.text_field :postal_code, placeholder: "000000", class:"rounded"  %></td>
           </tr>
           <tr>
             <td class="col-lg-3"><%= f.label :address, "住所" %></td>
-            <td><%= f.text_field :address %></td>
+            <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class:"rounded"  %></td>
           </tr>
           <tr>
             <td class="col-lg-3"><%= f.label :name, "宛名" %></td>
-            <td><%= f.text_field :name %></td>
+            <td><%= f.text_field :name, placeholder: "令和道子", class:"rounded"  %></td>
           </tr>
         </tbody>
       </table>

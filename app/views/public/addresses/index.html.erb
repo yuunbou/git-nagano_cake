@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row m-4">
-    <h4 class="col-lg-3 bg-light text-center">配送先登録/一覧</h4>
+    <div class="col-lg-8">
+      <h4 class="col-lg-4 bg-light text-center">配送先登録/一覧</h4>
+    </div>
   </div>
   <div class="row mb-4">
     <%= form_with model: @address, url: addresses_path, method: :post do |f| %>

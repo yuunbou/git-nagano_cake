@@ -1,20 +1,52 @@
-<h2>商品新規登録</h2>
-  <%= form_with model: @item, url: '/admin/items', method: :post do |f| %>
-    <h4>商品画像</h4>
-      <%= f.file_field :image, accept: "image/*" %>
-    <h4>商品名</h4>
-      <%= f.text_field :name %>
-    <h4>商品説明</h4>
-       <%= f.text_area :introduction %>
-    <h4>ジャンル</h4>
-      <%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "--選択してください--") %>
-    <h4>税抜価格</h4>
-      <%= f.text_field :price %>円
-    <h4>販売ステータス</h4>
-    <%= f.radio_button :is_active, :true %>
-    <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block;"} %>
-    <%= f.radio_button :is_active, :false %>
-    <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %>
-
-    <%= f.submit '新規登録' %>
-  <% end %>
+<div class="container">
+  <div class="row m-4">
+    <div class="col-lg-8">
+      <h4 class="col-lg-3 offset-1 bg-light text-center">商品新規登録</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-10 offset-2">
+      <%= form_with model: @item, url: '/admin/items', method: :post do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td class="col-lg-2">商品画像</td>
+            <td class="col-lg-8"><%= f.file_field :image, accept: "image/*", class: 'rounded col-lg-7 text-center p-1' %></td>
+          </tr>
+          <tr>
+            <td class="col-lg-2">商品名</td>
+            <td class="col-lg-2"><%= f.text_field :name, placeholder: "商品名", required: true %></td>
+          </tr>
+          <tr>
+            <td class="col-lg-2">商品説明</td>
+            <td class="col-lg-2"><%= f.text_area :introduction, placeholder: "ここに商品説明文を記述します", required: true %></td>
+          </tr>
+          <tr>
+            <td class="col-lg-2">ジャンル</td>
+            <td class="col-lg-8"><%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "--選択してください--")%></td>
+          </tr>
+          <tr>
+            <td class="col-lg-2">税抜価格</td>
+            <td class="col-lg-8"><%= f.text_field :price, placeholder: "1000", required: true, class: "" %>円</td>
+          </tr>
+          <tr>
+            <td class="col-lg-2">販売ステータス</td>
+            <td class="col-lg-1">
+              <%= f.radio_button :is_active, :true %>
+              <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block;"} %>
+            </td>
+            <td class="col-lg-3">
+              <%= f.radio_button :is_active, :false %>
+              <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-lg-2"></td>
+            <td class="col-lg-8"><%= f.submit '新規登録', class: "btn btn-success btn-lg" %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

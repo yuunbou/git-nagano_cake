@@ -13,7 +13,7 @@ ja:
     order_detail:
       making_status:
         impossible: "着手不可"
-        wait: "制作待ち"
+        wait: "製作待ち"
         production: "製作中"
-        complete: "制作完了"
-        
+        complete: "製作完了"
+

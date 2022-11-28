@@ -1,21 +1,53 @@
-<h2>商品編集</h2>
+<div class="container">
+  <div class="row m-4">
+    <div class="col-lg-8">
+      <h4 class="col-lg-3 offset-1 bg-light text-center">商品編集</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-10 offset-2">
+      <%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td class="col-lg-2">商品画像</td>
+            <td class="col-lg-8"><%= f.file_field :image, accept: "image/*", class: 'rounded col-lg-7 text-center p-1' %></td>
+          </tr>
+          <tr>
+            <td class="col-lg-2">商品名</td>
+            <td class="col-lg-2"><%= f.text_field :name, required: true, class: "col-lg-4" %></td>
+          </tr>
+          <tr>
+            <td class="col-lg-2">商品説明</td>
+            <td class="col-lg-8"><%= f.text_area :introduction, required: true %></td>
+          </tr>
+          <tr>
+            <td class="col-lg-2">ジャンル</td>
+            <td class="col-lg-8"><%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "--選択してください--")%></td>
+          </tr>
+          <tr>
+            <td class="col-lg-2">税抜価格</td>
+            <td class="col-lg-8"><%= f.text_field :price, required: true, class: "" %>円</td>
+          </tr>
+          <tr>
+            <td class="col-lg-2">販売ステータス</td>
+            <td class="col-lg-1">
+              <%= f.radio_button :is_active, :true %>
+              <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block;"} %>
+            </td>
+            <td class="col-lg-3">
+              <%= f.radio_button :is_active, :false %>
+              <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-lg-2"></td>
+            <td class="col-lg-8"><%= f.submit '新規登録', class: "btn btn-success btn-lg" %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
-  <label>商品画像</label>
-  <%= f.file_field :image, accept: "image/*" %>
-  <label>商品名</label>
-  <%= f.text_field :name %>
-  <label>商品説明</label>
-  <%= f.text_area :introduction %>
-  <label>ジャンル</label>
-  <%= f.collection_select(:genre_id, @genres, :id, :name) %>
-  <label>税抜価格</label>
-  <%= f.text_field :price %>円
-  <label>販売ステータス</label>
-  <%= f.radio_button :is_active, :true %>
-  <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block;"} %>
-  <%= f.radio_button :is_active, :false %>
-  <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %>
-
-  <%= f.submit '変更を保存' %>
-<% end %>
