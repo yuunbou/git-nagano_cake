@@ -18,13 +18,11 @@
         </tbody>
       </table>
       <p class="h4 font-weight-bold col-lg-2 mt-3">お届け先</p>
-      <table>
+      <table class=" col-lg-10">
         <tbody>
           <tr>
             <td class="col-lg-1"><%= f.radio_button :select_address, '0' %></td>
             <td><%= f.label :customer_id, "ご自身の住所", {value: '0', style: "display: inline-block;"} %></td>
-          </tr>
-          <tr>
             <td>
               〒<%= current_customer.postal_code %>
               <%= current_customer.address %>
@@ -40,16 +38,20 @@
             <td class="col-lg-1"><%= f.radio_button :select_address, '2' %></td>
             <td><%= f.label :id, "新しいお届け先", {value: '2', style: "display: inline-block;"} %></td>
           </tr>
+        </tbody>
+      </table>
+      <table class="col-lg-10">
+        <tbody>
           <tr>
-            <td class="col-lg-3"><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></td>
+            <td class="col-lg-4 offset-2"><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></td>
             <td><%= f.text_field :postal_code, placeholder: "000000", class:"rounded"  %></td>
           </tr>
           <tr>
-            <td class="col-lg-3"><%= f.label :address, "住所" %></td>
-            <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class:"rounded"  %></td>
+            <td class="col-lg-4 offset-2"><%= f.label :address, "住所" %></td>
+            <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class:"rounded col-lg-8"  %></td>
           </tr>
           <tr>
-            <td class="col-lg-3"><%= f.label :name, "宛名" %></td>
+            <td class="col-lg-4 offset-2"><%= f.label :name, "宛名" %></td>
             <td><%= f.text_field :name, placeholder: "令和道子", class:"rounded"  %></td>
           </tr>
         </tbody>

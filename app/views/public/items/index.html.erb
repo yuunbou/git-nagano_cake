@@ -4,7 +4,7 @@
       <h2 class="font-weight-bold">商品一覧</h2>
       <p class="align-text-bottom font-weight-bold mt-3 mb-0">（全<%= @items.count %>件）</p>
     </div>
-    <div class="col-12 d-flex">
+    <div class="col-12 d-flex flex-wrap">
       <% @items.each do |item| %>
         <div class="list-group-item m-3">
           <%= link_to item_path(item.id) do %>
@@ -16,4 +16,5 @@
       <% end %>
     </div>
   </div>
+  <%= paginate @items %>
 </div>

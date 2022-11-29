@@ -25,7 +25,7 @@
             <%= order.address %></br>
             <%= order.name %>
           </td>
-          <td class="align-middle">
+          <td>
             <% order.order_details.each do |order_detail| %><br>
               <%= order_detail.item.name %>
             <% end %>
